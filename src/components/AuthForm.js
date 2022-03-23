@@ -1,7 +1,7 @@
 import { authService } from "fbBase";
 import React, { useState } from "react";
 import Auth from "routes/Auth";
-
+const inputStyles = {};
 const AuthForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -43,7 +43,7 @@ const AuthForm = () => {
 
   return (
     <>
-      <form type="post" onSubmit={onSubmit}>
+      <form type="post" onSubmit={onSubmit} className="container">
         <input
           name="email"
           type="email"
@@ -51,6 +51,7 @@ const AuthForm = () => {
           required
           onChange={onChange}
           value={email}
+          className="authInput"
         />
         <input
           name="password"
@@ -59,11 +60,16 @@ const AuthForm = () => {
           required
           onChange={onChange}
           value={password}
+          className="authInput"
         />
-        <input type="submit" value={newAccount ? "Create Account" : "Log In"} />
-        {error}
+        <input
+          type="submit"
+          className="authInput authSubmit"
+          value={newAccount ? "Create Account" : "Log In"}
+        />
+        {error && <span className="authError">{error}</span>}
       </form>
-      <span onClick={toggleAccount}>
+      <span onClick={toggleAccount} className="authSwitch">
         {newAccount ? "Sign In" : "Create Account"}
       </span>
     </>
